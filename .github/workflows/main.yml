@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t abyc329/api_nyc_houseprice:latest .
+        run: docker build -t abyc329/api_nyc_houseprice:latest /Users/alexa/Documents/MLOps /API_nyc_houseprice
 
       - name: Tag Docker image
         run: docker tag my-docker-image ${{ secrets.DOCKER_USERNAME }}/abyc329/api_nyc_houseprice:latest
