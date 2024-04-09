@@ -21,9 +21,9 @@ jobs:
          password: ${{ secrets.DOCKER_PASSWORD }}
 
      - name: Build Docker image
-       run: docker build -t abyc329/api_nyc_houseprice:v1 .
+       run: docker build -t abyc329/api_nyc_houseprice:latest .
 
      - name: docker push to Dockerhub
-       run: docker push abyc329/api_nyc_houseprice:v1
+       run: docker push abyc329/api_nyc_houseprice:latest
 
   
