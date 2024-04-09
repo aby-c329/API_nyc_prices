@@ -5,12 +5,13 @@ on:
   pull_request:
     branches:
      -main
-#acciones
+
+
 jobs:
   build_docker_image:
     runs-on: ubuntu-latest
 
-   steps:
+    steps:
    
      - name: Check the repo
      - uses: actions/checkout@v2
@@ -24,5 +25,5 @@ jobs:
      - name: Build Docker image
         run: docker build -t abyc329/api_nyc_houseprice:latest .
 
-     - name: Docker push to dockerhub
+     - name: Docker push to Dockerhub
         run: docker push abyc329/api_nyc_houseprice:latest
