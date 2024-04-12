@@ -45,4 +45,3 @@ jobs:
            docker pull ${{ secrets.DOCKER_USERNAME }}/api_nyc_houseprice:latest
            docker run -d --name nyc_houseprice -p 8000:8000
         
-
