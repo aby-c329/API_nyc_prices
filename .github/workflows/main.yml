@@ -4,7 +4,7 @@ name: CI model to Dockerhub
 on: 
   pull_request:
     branches:
-     - main
+     - Dev
 
 jobs:
   build_docker_image:
