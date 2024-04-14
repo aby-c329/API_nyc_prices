@@ -4,7 +4,7 @@ name: CI model to Dockerhub
 on: 
   pull_request:
     branches:
-     - main
+     - dev
 
 jobs:
   build_docker_image:
@@ -26,4 +26,19 @@ jobs:
      - name: docker push to Dockerhub
        run: docker push abyc329/api_nyc_houseprice:v1
 
-  
+     - name: Deploy to Ec2
+       uses: appleboy/ssh-action@master
+       with:
+         host: ${{ secrets.EC2_HOST }}
+         username: ${{ secrets.EC2_USERNAME }}
+         key: ${{ secrets.EC2_PRIVATE_KEY }}
+         script: |
+           docker login
+           if docker ps --all | grep nyc_houseprice; then
+             docker stop nyc_houseprice
+             docker rm nyc_houseprice
+           fi
+           
+           docker pull ${{ secrets.DOCKER_USERNAME }}/api_nyc_houseprice:latest
+           docker run -d --name nyc_houseprice -p 8000:8000
+        
